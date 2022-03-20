@@ -1,4 +1,7 @@
-class CarSpeed:
+from abc import ABC
+
+
+class CarSpeed(ABC):
     speed: int
 
     @classmethod

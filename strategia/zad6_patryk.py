@@ -1,5 +1,4 @@
 from abc import ABC
-from typing import Type
 
 class SpedzanieWolnegoCzasu(ABC):
     message = None
@@ -45,9 +44,9 @@ class Leczenie(Pracowac):
     message = 'Leczenie'
 
 class Pracownik:
-    pracowac: Type[Pracowac]
-    dojezdzac: Type[Dojezdzac]
-    spedzanie_wolnego_czasu: Type[SpedzanieWolnegoCzasu]
+    pracowac = None
+    dojezdzac = None
+    spedzanie_wolnego_czasu = None
 
     def __init__(self, zawod):
         self.zawod = zawod

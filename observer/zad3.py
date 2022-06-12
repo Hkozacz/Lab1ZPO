@@ -19,7 +19,10 @@ class Publisher:
         "2": equal_three,
         "3": is_even,
     }
-    listeners = []
+    listeners: list
+
+    def __init__(self):
+        self.listeners = []
 
     @classmethod
     def add_listener(cls, listener):

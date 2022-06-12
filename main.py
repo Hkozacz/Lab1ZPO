@@ -1,5 +1,5 @@
 from strategia.zad3 import Porshe, Maluch, Ford
-from lab3.zad3 import Publisher
+from observer.zad3 import Publisher
 
 if __name__ == '__main__':
     # print(f"""

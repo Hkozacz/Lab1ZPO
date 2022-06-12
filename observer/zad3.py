@@ -14,23 +14,20 @@ def is_even(number):
 
 
 class Publisher:
-    listeners_to_add = {
-        "1": bigger_than_zero,
-        "2": equal_three,
-        "3": is_even,
-    }
-    listeners: list
 
     def __init__(self):
         self.listeners = []
+        self.choices = {
+            "1": bigger_than_zero,
+            "2": equal_three,
+            "3": is_even,
+        }
 
-    @classmethod
-    def add_listener(cls, listener):
-        cls.listeners.append(listener)
+    def add_listener(self, listener):
+        self.listeners.append(listener)
 
-    @classmethod
-    def remove_listener(cls, listener):
-        cls.listeners.pop(listener.index(listener))
+    def remove_listener(self, listener):
+        self.listeners.pop(listener.index(listener))
 
     @staticmethod
     def get_input():
@@ -43,14 +40,13 @@ class Publisher:
             except ValueError:
                 break
             if user_input == 0:
-                print("choose:", "[1] x > 0", "[2] x == 3", "[3] x/2", sep="\n")
+                print("Wybierz: \n [1] x > 0 \n [2] x == 3 \n [3] x/2")
                 listener = input()
-                self.add_listener(self.listeners_to_add[listener])
+                self.add_listener(self.choices[listener])
             self.trigger_listener(user_input)
 
-    @classmethod
-    def trigger_listener(cls, number):
-        for listener in cls.listeners:
+    def trigger_listener(self, number):
+        for listener in self.listeners:
             listener(number)
 
 

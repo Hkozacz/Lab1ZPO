@@ -1,9 +1,8 @@
-import abc
 import random
 from abc import ABC
 
 
-class StockMarket:
+class Stock:
 
     def __init__(self):
         self.listeners = []
@@ -16,43 +15,38 @@ class StockMarket:
 
     def change_price(self):
         for listener in self.listeners:
-            listener.execute(random.randint(2000, 10000000))
+            listener.new_price(random.randint(0, 100))
 
 
 class Company(ABC):
 
     def __init__(self):
-        self.price: int = 0
+        self.price = 0
 
-    def execute(self, new_price: int):
-        print('old price: ', self.price)
+    def new_price(self, new_price: int):
         self.price = new_price
-        print('new price: ', self.price)
 
 
-class Company1(Company):
+class CdProjekt(Company):
     pass
 
 
-class Company2(Company):
+class EaGames(Company):
     pass
 
 
-class Company3(Company):
+class Blizzard(Company):
     pass
 
 
 if __name__ == '__main__':
 
-    stock_market = StockMarket()
-    company1 = Company1()
-    company2 = Company2()
-    company3 = Company3()
-    stock_market.add_listener(company1)
-    stock_market.add_listener(company2)
-    stock_market.add_listener(company3)
+    stock_market = Stock()
+    cdp = CdProjekt()
+    ea = EaGames()
+    blizz = Blizzard()
+    for company in [cdp, ea, blizz]:
+        stock_market.add_listener(company)
 
-    stock_market.change_price()
-    stock_market.change_price()
-    stock_market.change_price()
-    stock_market.change_price()
+    for i in range(0, 10):
+        stock_market.change_price()
